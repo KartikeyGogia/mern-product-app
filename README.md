@@ -1,60 +1,85 @@
-#  MERN Product Management App
+# MERN Product Management App
 
-##  Overview
+##  Live Demo
 
-This is a MERN stack application where users can manage products with full CRUD functionality.
+* Frontend: https://mern-product-app-psi.vercel.app
+* Backend: https://mern-backend-det8.onrender.com
 
 ---
 
 ##  Features
 
-* Add product
-* View products
-* Edit product
-* Delete product
-* Image preview upload
-* Responsive UI
+* Add Product
+* Edit Product
+* Delete Product
+* View Products
+* Responsive UI (Mobile + Desktop)
 
 ---
 
-##  Tech Stack
+## Tech Stack
 
-* React.js
-* Node.js
-* Express.js
-* MongoDB
+* Frontend: React (Vite)
+* Backend: Node.js, Express.js
+* Database: MongoDB (Atlas)
+* Deployment: Vercel (Frontend), Render (Backend)
 
 ---
 
 ##  API Endpoints
 
-* GET /api/products
-* POST /api/products
-* PUT /api/products/:id
-* DELETE /api/products/:id
+### Get all products
+
+GET /api/products
+
+### Create product
+
+POST /api/products
+
+### Update product
+
+PUT /api/products/:id
+
+### Delete product
+
+DELETE /api/products/:id
 
 ---
 
-##  How to Run
+##  Setup Instructions
 
-### Backend:
+### 1. Clone repo
 
-```bash
-cd server
-npm install
-npm start
-```
+git clone https://github.com/KartikeyGogia/mern-product-app.git
 
-### Frontend:
+### 2. Install dependencies
 
-```bash
+Frontend:
 cd client
 npm install
-npm run dev
-```
+
+Backend:
+cd server
+npm install
 
 ---
 
-## Author
+### 3. Run project
+
+Backend:
+npm run dev
+
+Frontend:
+npm run dev
+
+---
+
+##  Note
+
+Backend is hosted on Render free tier, so first request may take time.
+
+---
+
+##  Author
 
 Kartikey Gogia
