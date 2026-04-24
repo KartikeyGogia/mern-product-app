@@ -6,7 +6,11 @@
     "dev": "nodemon index.js",
     "start": "node index.js"
   },
-  "dependencies": {},
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "mongoose": "^9.5.0"
+  },
   "devDependencies": {
     "nodemon": "^3.0.0"
   }
