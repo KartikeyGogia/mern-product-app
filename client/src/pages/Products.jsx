@@ -4,6 +4,7 @@ import axios from 'axios';
 
 
 function Products() {
+  const BASE_URL = "https://mern-backend-det8.onrender.com";
   const [brand, setBrand] = useState("");
   const[images, setImages] = useState([]);
   const[showModal, setShowModal] = useState(false);
@@ -42,7 +43,7 @@ const togglePublish = (id) => {
     if (editingId) {
       
       const res = await axios.put(
-        `http://localhost:5000/api/products/${editingId}`,
+        `${BASE_URL}/api/products/${editingId}`,
         { title, description, price }
       );
 
@@ -56,7 +57,7 @@ const togglePublish = (id) => {
     } else {
       
       const res = await axios.post(
-        "http://localhost:5000/api/products",
+        `${BASE_URL}/api/products`,
         { title, description, price }
       );
 
@@ -75,7 +76,7 @@ const togglePublish = (id) => {
 
   async function getProducts() {
     try {
-      const res = await axios.get("http://localhost:5000/api/products");
+      const res = await axios.get(`${BASE_URL}/api/products`);
       setProducts(res.data);
     } catch (err) {
       console.log("Error", err);
@@ -84,7 +85,7 @@ const togglePublish = (id) => {
 
   async function deleteProduct(id) {
   try {
-    await axios.delete(`http://localhost:5000/api/products/${id}`);
+    await axios.delete(`${BASE_URL}/api/products/${id}`);
     setProducts(products.filter((p) => p._id !== id));
   } catch (err) {
     console.log(err);
@@ -97,32 +98,6 @@ function handleEdit(product) {
   setPrice(product.price);
   setEditingId(product._id);
 }
-
-async function updateProduct() {
-  try {
-    const res = await axios.put(
-      `http://localhost:5000/api/products/${editingId}`,
-      {
-        title,
-        description,
-        price,
-      }
-    );
-
-    setProducts(products.map((p) =>
-      p._id === editingId ? res.data : p
-    ));
-
-    setTitle("");
-    setDescription("");
-    setPrice(0);
-    setEditingId(null);
-
-  } catch (err) {
-    console.log(err);
-  }
-}
-
 
 
   return (
