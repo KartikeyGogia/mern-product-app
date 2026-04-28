@@ -266,7 +266,7 @@ function handleEdit(product) {
       fontSize: "13px"
     }}
   >
-    Delete 🗑
+    Delete 
   </button>
   </div>
 
