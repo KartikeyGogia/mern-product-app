@@ -97,6 +97,7 @@ function handleEdit(product) {
   setDescription(product.description);
   setPrice(product.price);
   setEditingId(product._id);
+  setShowModal(true);
 }
 
 
@@ -408,11 +409,8 @@ function handleEdit(product) {
 />
 
 
-<label style={{ fontSize: "13px", fontWeight: "500" }}>MRP</label>
-<input
-  
-  value={brand}
-  onChange={(e) => setBrand(e.target.value)}
+<label>MRP</label>
+<input type="number" value={price} onChange={(e) => setPrice(e.target.value)} 
   style={{
     width: "100%",
     padding: "10px",
@@ -436,11 +434,8 @@ function handleEdit(product) {
   }}
 />
 
-<label style={{ fontSize: "13px", fontWeight: "500" }}>Brand Name</label>
-<input
-  type="number"
-  value={price}
-  onChange={(e) => setPrice(e.target.value)}
+<label>Brand Name</label>
+<input value={brand} onChange={(e) => setBrand(e.target.value)} 
   style={{
     width: "100%",
     padding: "10px",

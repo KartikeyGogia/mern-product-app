@@ -1,12 +1,18 @@
+const authmiddleware = require("./middleware/authMiddleware");
+const authRoutes = require("./routes/auth");
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const app = express();
 const productRoutes = require("./routes/productRoutes");
+
+
+app.use(express.json()); 
     
 app.use(cors());
 app.use(express.json());
 
+app.use("/api/auth", authRoutes);
 app.use('/api/products', productRoutes);
 
 app.get("/", (req, res) => {

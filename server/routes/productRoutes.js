@@ -10,7 +10,8 @@ router.post('/', async (req, res) => {
         await product.save();
         res.json(product);
     } catch (err) {
-        res.status(500).json({ message: "Failed to create product" });
+        console.log("ERROR:", err); 
+        res.status(500).json({ message: err.message }); 
     }
 });
 
