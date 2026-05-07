@@ -7,6 +7,7 @@ function Signup() {
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
+  const API_URL = import.meta.env.VITE_API_URL;
 
   const handleSignup = async () => {
     try {
