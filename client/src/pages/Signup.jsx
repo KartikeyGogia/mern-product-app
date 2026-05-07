@@ -10,10 +10,13 @@ function Signup() {
 
   const handleSignup = async () => {
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/register", {
-        email,
-        password
-      });
+      const res = await axios.post(
+        `${API_URL}/api/auth/register`,
+        {
+          email,
+          password,
+        }
+      );
 
       alert("Signup successful");
       navigate("/login");
