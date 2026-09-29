@@ -126,26 +126,13 @@ router.post("/login", async (req, res) => {
     if (isMongoConnected()) {
       try {
         const dbUser = await User.findOne({ email: normalizedEmail });
-        if (dbUser) {
-          if (dbUser.password === password) {
-            matchedUser = dbUser;
-          } else {
-            return res.status(400).json({
-              success: false,
-              message: "Invalid password",
-            });
-          }
-        } else {
-          // If user doesn't exist yet, auto-register them seamlessly
-          const newUser = new User({
-            email: normalizedEmail,
-            password: password,
-            name: normalizedEmail.split("@")[0],
+        if (!dbUser || dbUser.password !== password) {
+          return res.status(400).json({
+            success: false,
+            message: "Invalid email or password",
           });
-          await newUser.save();
-          matchedUser = newUser;
-          console.log(`Auto-registered new user on login: ${normalizedEmail}`);
         }
+        matchedUser = dbUser;
       } catch (dbErr) {
         console.warn("MongoDB query error, falling back to in-memory:", dbErr.message);
       }
@@ -154,25 +141,13 @@ router.post("/login", async (req, res) => {
     // Fallback to in-memory check if MongoDB not available
     if (!matchedUser) {
       const memUser = inMemoryUsers.find((u) => u.email === normalizedEmail);
-      if (memUser) {
-        if (memUser.password === password) {
-          matchedUser = memUser;
-        } else {
-          return res.status(400).json({
-            success: false,
-            message: "Invalid password",
-          });
-        }
-      } else {
-        // Auto-register in memory
-        const newMemUser = {
-          email: normalizedEmail,
-          password: password,
-          name: normalizedEmail.split("@")[0],
-        };
-        inMemoryUsers.push(newMemUser);
-        matchedUser = newMemUser;
+      if (!memUser || memUser.password !== password) {
+        return res.status(400).json({
+          success: false,
+          message: "Invalid email or password",
+        });
       }
+      matchedUser = memUser;
     }
 
     const token = jwt.sign(
