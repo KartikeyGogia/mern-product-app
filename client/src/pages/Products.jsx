@@ -1,10 +1,9 @@
 import {useEffect, useState} from 'react';
 import axios from 'axios';
-
-
+import { API_URL } from '../config/api';
 
 function Products() {
-  const BASE_URL = "https://mern-backend-det8.onrender.com";
+  const BASE_URL = API_URL;
   const [brand, setBrand] = useState("");
   const[images, setImages] = useState([]);
   const[showModal, setShowModal] = useState(false);
